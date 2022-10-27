@@ -12,7 +12,7 @@ namespace The_Restaurant
 
         public Person(string name)
         {
-            Name = name;
+            Name = The_Restaurant.Company.LastName();
         }
     }
     class Chef :Person

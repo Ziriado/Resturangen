@@ -8,6 +8,14 @@ namespace The_Restaurant
 {
     internal class Company
     {
+
+        public void BuildningCompany()
+        {
+            Random rnd = new Random();
+            rnd.Next(1, 5);
+
+            List<Company> company = new List<Company>();
+        }
         public static string LastName()
         {
             string[] lastnames =
