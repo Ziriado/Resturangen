@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, Lets Create THE Restaurant!");
+            GUI gUI = new GUI();
+            gUI.Tables();
         }
     }
 }
