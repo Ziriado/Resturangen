@@ -8,5 +8,6 @@ namespace The_Restaurant
 {
     internal class Restaurant
     {
+
     }
 }

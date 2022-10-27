@@ -9,12 +9,17 @@ namespace The_Restaurant
     internal class Company
     {
 
-        public void BuildningCompany()
+        public List<Guest> BuildingCompany()
         {
             Random rnd = new Random();
-            rnd.Next(1, 5);
+            int randomNumber = rnd.Next(1, 5);
 
-            List<Company> company = new List<Company>();
+            List<Guest> company = new List<Guest>();
+            for (int i = 0; i < randomNumber; i++)
+            {
+                company.Add(new Guest(LastName()));
+            }
+            return company;
         }
         public static string LastName()
         {

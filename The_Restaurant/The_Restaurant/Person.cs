@@ -28,6 +28,19 @@ namespace The_Restaurant
         {
 
         }
+        internal void PickUpCompany(List<Guest> eachCompany)
+        {
+            Company company = new Company();
+            Table table = new Table(false, false, 0, 0);
+
+
+
+            Console.SetCursorPosition(5, 6);
+            foreach (Guest guest in eachCompany)
+            {
+                Console.WriteLine(guest.Name);
+            }
+        }
     }
 
     class Guest : Person
