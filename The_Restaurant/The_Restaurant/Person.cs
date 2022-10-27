@@ -28,18 +28,53 @@ namespace The_Restaurant
         {
 
         }
-        internal void PickUpCompany(List<Guest> eachCompany)
+        internal bool PickUpCompany(List<Guest> eachCompany)
         {
             Company company = new Company();
             Table table = new Table(false, false, 0, 0);
+            TableOne tableOne = new TableOne(false, false, 0, 0);
+            TableTwo tableTwo = new TableTwo(false, false, 0, 0);
+            TableSix tableSix = new TableSix(false, false, 0, 0);
+            TableSeven tableSeven = new TableSeven(false, false, 0, 0);
 
 
-
-            Console.SetCursorPosition(5, 6);
-            foreach (Guest guest in eachCompany)
+            if (tableOne.IsDirty == false && tableOne.IsOccupied == false && eachCompany.Count >= 3)
             {
-                Console.WriteLine(guest.Name);
+                Console.SetCursorPosition(5, 6);
+                foreach (Guest guest in eachCompany)
+                {
+                    Console.Write(guest.Name);
+                }
+                tableOne.IsOccupied = true;
             }
+            else if (tableTwo.IsDirty == false && tableTwo.IsOccupied == false && eachCompany.Count >= 3)
+            {
+                Console.SetCursorPosition(30, 6);
+                foreach (Guest guest in eachCompany)
+                {
+                    Console.Write(guest.Name + " ");
+                }
+                tableTwo.IsOccupied = true;
+            }
+            else if (tableSix.IsDirty == false && tableSix.IsOccupied == false && eachCompany.Count <= 2)
+            {
+                Console.SetCursorPosition(55, 6);
+                foreach (Guest guest in eachCompany)
+                {
+                    Console.Write(guest.Name + " ");
+                }
+                tableSix.IsOccupied = true;
+            }
+            else if (tableSeven.IsDirty == false && tableSeven.IsOccupied == false && eachCompany.Count <= 2)
+            {
+                Console.SetCursorPosition(80, 6);
+                foreach (Guest guest in eachCompany)
+                {
+                    Console.Write(guest.Name + " ");
+                }
+                tableSeven.IsOccupied = true;
+            }
+            return table.IsOccupied;
         }
     }
 
