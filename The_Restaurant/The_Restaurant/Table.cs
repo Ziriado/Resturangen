@@ -31,36 +31,4 @@ namespace The_Restaurant
             //TablesList.Add(new TableSeven(IsOccupied, IsDirty, tableSize, tableQuality));
         }
     }
-    class TableOne : Table
-    {
-        public TableOne(bool IsOccupied, bool IsDirty, int TableSize, int TableQuality) : base(IsOccupied, IsDirty, TableSize, TableQuality)
-        {
-            TableSize = 4;
-            TableQuality = 5;
-        }
-    }
-    class TableTwo : Table
-    {
-        public TableTwo(bool IsOccupied, bool IsDirty, int TableSize, int TableQuality) : base(IsOccupied, IsDirty, TableSize, TableQuality)
-        {
-            TableSize = 4;
-            TableQuality = 5;
-        }
-    }
-    class TableSix : Table
-    {
-        public TableSix(bool IsOccupied, bool IsDirty, int TableSize, int TableQuality) : base(IsOccupied, IsDirty, TableSize, TableQuality)
-        {
-            TableSize = 2;
-            TableQuality = 5;
-        }
-    }
-    class TableSeven : Table
-    {
-        public TableSeven(bool IsOccupied, bool IsDirty, int TableSize, int TableQuality) : base(IsOccupied, IsDirty, TableSize, TableQuality)
-        {
-            TableSize = 2;
-            TableQuality = 4;
-        }
-    }
 }
