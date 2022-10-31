@@ -32,9 +32,11 @@ namespace The_Restaurant
 
     class Guest : Person
     {
+        public double Cash { get; set; }
         public Guest (string Name) :base(Name)
         {
-
+            Random rnd = new Random();
+            Cash = rnd.Next(100, 300);
         }
      
     }
