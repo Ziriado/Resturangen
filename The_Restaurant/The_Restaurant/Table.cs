@@ -24,11 +24,6 @@ namespace The_Restaurant
             IsDirty = false;
             TableSize = tableSize;
             TableQuality = tableQuality;
-            //TablesList = new List<Table>();
-            //TablesList.Add(new TableOne(IsOccupied, IsDirty, tableSize, tableQuality));
-            //TablesList.Add(new TableTwo(IsOccupied, IsDirty, tableSize, tableQuality));
-            //TablesList.Add(new TableSix(IsOccupied, IsDirty, tableSize, tableQuality));
-            //TablesList.Add(new TableSeven(IsOccupied, IsDirty, tableSize, tableQuality));
         }
     }
 }
