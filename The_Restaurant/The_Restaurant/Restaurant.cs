@@ -17,6 +17,7 @@ namespace The_Restaurant
         public void Welcome()
         {
             //graphics.DrawRestaurant();
+           
         }
         
 
