@@ -7,11 +7,16 @@
 
             Restaurant restaurant = new Restaurant();
 
+            
             restaurant.Welcome();
+            restaurant.DrawRestaurant();
             restaurant.CompaniesInQueue();
             
 
-            
+
+
+
+
         }
     }
 }
