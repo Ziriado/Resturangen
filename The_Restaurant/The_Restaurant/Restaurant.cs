@@ -10,7 +10,7 @@ namespace The_Restaurant
 {
     internal class Restaurant
     {
-        List<List<Guest>> group = new List<List<Guest>>();
+        List<List<Guest>> GuestList = new List<List<Guest>>();
         Graphics graphics = new Graphics();
         public void Welcome()
         {
@@ -27,7 +27,7 @@ namespace The_Restaurant
             {
 
                     inQueueCompany = company.BuildingCompany();
-                    group.Add(inQueueCompany);
+                    GuestList.Add(inQueueCompany);
                 
             }
             inQueueCompany.Clear();
