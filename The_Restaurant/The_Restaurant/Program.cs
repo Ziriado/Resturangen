@@ -9,7 +9,6 @@
 
             
             restaurant.Welcome();
-            restaurant.DrawRestaurant();
             restaurant.CompaniesInQueue();
             
 
