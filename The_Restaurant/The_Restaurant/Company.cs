@@ -21,6 +21,16 @@ namespace The_Restaurant
             }
             return company;
         }
+        public List<Waiter> BuildWaiters()
+        {
+            List <Waiter> waiters = new List<Waiter>();
+            for (int i = 0; i < 3; i++)
+            {
+                waiters.Add(new Waiter(LastName()));
+            }
+            return waiters;
+
+        }
         public static string LastName()
         {
             string[] lastnames =

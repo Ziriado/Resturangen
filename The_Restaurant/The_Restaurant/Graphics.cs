@@ -8,11 +8,12 @@ namespace The_Restaurant
 {
     internal class Graphics
     {
-        public static List<Table> _tableList = new List<Table>();
-        public void DrawRestaurant()
+        public List<Table> _tableList = new List<Table>();
+
+        public void DrawRestaurant(List <Guest> guests)
         {
             List<Guest> empty = new List<Guest>();
-
+            
             _tableList.Add(new Table { Name = "Bord 1", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 0, SetY = 7 });
             _tableList.Add(new Table { Name = "Bord 2", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 20, SetY = 7 });
             _tableList.Add(new Table { Name = "Bord 3", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 40, SetY = 7 });
@@ -30,11 +31,19 @@ namespace The_Restaurant
 
             foreach (Table table in _tableList)
             {
-                Draw(table.Name, table.SetX, table.SetY, empty);
+                if (table.IsDirty == false && table.IsOccupied == false && guests is not null)
+                {
+                    Draw(table.Name, table.SetX, table.SetY, guests);
+                }
+                else
+                {
+                    Draw(table.Name, table.SetX, table.SetY, empty);
+                }
+                guests.Clear();
             }
 
         }
-        public static void Draw<T>(string header, int fromLeft, int fromTop, List<T> anyList)
+        public void Draw<T>(string header, int fromLeft, int fromTop, List<T> anyList)
         {
             string[] graphics = new string[anyList.Count];
             for (int i = 0; i < anyList.Count; i++)
