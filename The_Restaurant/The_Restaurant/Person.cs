@@ -61,7 +61,7 @@ namespace The_Restaurant
         public Guest (string Name) :base(Name)
         {
             Random rnd = new Random();
-            Cash = rnd.Next(100, 300);
+            Cash = rnd.Next(180, 390);
         }
      
     }
