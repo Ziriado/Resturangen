@@ -6,63 +6,44 @@ using System.Threading.Tasks;
 
 namespace The_Restaurant
 {
-    internal class Person
+    interface IPerson
     {
         public string Name { get; set; }
 
-        public Person(string name)
+    }
+    class Guest : IPerson
+    {
+        public string Name { get; set; }
+
+        public Guest()
         {
             Name = The_Restaurant.Company.LastName();
         }
     }
-    class Chef :Person
+    class Waitress : IPerson
     {
-        public Chef(string Name) : base(Name)
-        {
+        public int NumberOfWaitresses { get; set; } = 3;
 
+        public int SetX { get; set; }
+        public int SetY { get; set; }
+        public bool IsAvailable { get; set; }
+        public string Name { get; set; }
+
+        public Waitress(bool isAvailable, int setX, int setY)
+        {
+            Name = The_Restaurant.Company.LastName();
+            SetX = setX;
+            SetY = setY;
+            isAvailable = true;
         }
     }
-    class Waiter : Person
+    class Chef : IPerson
     {
-        Restaurant restaurant = new Restaurant();
-        Company company = new Company();
-        Table table = new Table();
-        Graphics graphics = new Graphics();
-        public Waiter(string Name) : base(Name)
+        public string Name { get; set; }
+
+        public Chef()
         {
-
+            Name = The_Restaurant.Company.LastName();
         }
-        public void PickUpCompanyInLine(List<List<Guest>> guestsComp, List<Guest> moreGuests)
-        {
-            List<Waiter> waiters = new List<Waiter>();
-            waiters = company.BuildWaiters();
-
-
-            //if (restaurant.GuestList is not null)
-            //{
-            //    foreach (Table table in graphics._tableList)
-            //    {
-            //        if (table.IsOccupied == false && table.IsDirty == false)
-            //        {
-            moreGuests.AddRange(guestsComp[0]);
-            guestsComp.RemoveAt(0);
-            graphics.DrawRestaurant(moreGuests);
-            //        }
-            //    }
-            //}
-
-
-        }
-    }
-
-    class Guest : Person
-    {
-        public double Cash { get; set; }
-        public Guest (string Name) :base(Name)
-        {
-            Random rnd = new Random();
-            Cash = rnd.Next(180, 390);
-        }
-     
     }
 }

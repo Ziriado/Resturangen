@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,28 +9,22 @@ namespace The_Restaurant
 {
     internal class Company
     {
+        public int NumberOfCompanies { get; set; } = 32;
 
-        public List<Guest> BuildingCompany()
+        Guest guest = new Guest();
+
+
+        public List<Guest> RandomizeCompany()
         {
             Random rnd = new Random();
-            int randomNumber = rnd.Next(1, 5);
+            int rndNr = rnd.Next(1, 5);
 
-            List<Guest> company = new List<Guest>();
-            for (int i = 0; i < randomNumber; i++)
+            List<Guest> guestsToCompany = new List<Guest>();
+            for (int i = 0; i < rndNr; i++)
             {
-                company.Add(new Guest(LastName()));
+                guestsToCompany.Add(new Guest());
             }
-            return company;
-        }
-        public List<Waiter> BuildWaiters()
-        {
-            List <Waiter> waiters = new List<Waiter>();
-            for (int i = 0; i < 3; i++)
-            {
-                waiters.Add(new Waiter(LastName()));
-            }
-            return waiters;
-
+            return guestsToCompany;
         }
         public static string LastName()
         {
