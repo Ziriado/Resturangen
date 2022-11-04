@@ -7,7 +7,7 @@
             Restaurant restaurant = new Restaurant();
             restaurant.Welcome();
 
-
+            Console.ReadKey();
         }
     }
 }
