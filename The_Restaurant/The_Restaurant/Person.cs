@@ -34,7 +34,7 @@ namespace The_Restaurant
             Name = The_Restaurant.Company.LastName();
             SetX = setX;
             SetY = setY;
-            isAvailable = true;
+            IsAvailable = isAvailable;
         }
     }
     class Chef : IPerson

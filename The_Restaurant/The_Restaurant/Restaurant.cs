@@ -40,23 +40,27 @@ namespace The_Restaurant
             ShowQueue();
             DrawRestaurant();
             PerformRound(waitress, chef);
-            PlaceCompanyAtTable();
+            //PlaceCompanyAtTable();
 
 
 
         }
-        public void PlaceCompanyAtTable()
-        {
-            foreach (KeyValuePair<string, Table> kvp in tableDictionary)
-            {
-                if (kvp.Value.CompanyList == null && kvp.Value.IsDirty == false && kvp.Value.IsOccupied == false)
-                {
-                    kvp.Value.CompanyList.Add(queue.ToList());
-                }
-            }
+        //public void PlaceCompanyAtTable()
+        //{
+        //    List<List<Guest>> tempList = new List<List<Guest>>();
+        //    tempList.Add(queue.Dequeue());
+        //    foreach (KeyValuePair<string, Table> kvp in tableDictionary)
+        //    {
+        //        if (kvp.Value.CompanyList == null && kvp.Value.IsDirty == false && kvp.Value.IsOccupied == false)
+        //        {
+        //            //kvp.Value.CompanyList.Add(queue.Dequeue());
+        //            var x = queue;
+        //            var y = kvp.Value.CompanyList.Add()
+        //        }
+        //    }
 
 
-        }
+        //}
         public void PerformRound(List<Waitress> waitress, List<Chef> chef)
         {
             foreach (Waitress allWaitress in waitress)
@@ -67,7 +71,7 @@ namespace The_Restaurant
                 }
             }
         }
-        public void WaitressGoToEntrence(List<Waitress> waitr)
+        public void WaitressGoToEntrence(List<Waitress> waitress)
         {
             foreach (Waitress w in waitress)
             {
