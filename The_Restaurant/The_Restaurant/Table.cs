@@ -21,11 +21,11 @@ namespace The_Restaurant
 
         public List<List<Guest>> CompanyList { get; set; }
 
-        public Table(string name, bool IsOccupied, bool IsDirty, int tableSize, int tableQuality, int setY, int setX, List<List<Guest>> CompanyList)
+        public Table(string name, bool isOccupied, bool isDirty, int tableSize, int tableQuality, int setY, int setX, List<List<Guest>> CompanyList)
         {
             Name = name;
-            IsOccupied = false;
-            IsDirty = false;
+            IsOccupied = isOccupied;
+            IsDirty = isDirty;
             TableSize = tableSize;
             TableQuality = tableQuality;
             SetY = setY;
