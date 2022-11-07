@@ -22,6 +22,11 @@ namespace The_Restaurant
                 {
                     graphics[i] = (anyList[i] as Waitress).Name;
                 }
+                else if (anyList[i] is Chef)
+                {
+                    graphics[i] = (anyList[i] as Chef).Name;
+                }
+
             }              
             GUI.Window.Draw(header, fromLeft, fromTop, graphics);
             

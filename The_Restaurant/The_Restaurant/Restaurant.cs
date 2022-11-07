@@ -23,7 +23,6 @@ namespace The_Restaurant
         Table table = new Table();
         Graphics graphics = new Graphics();
 
-        List<Guest> empty = new List<Guest>();
 
         public void Welcome()
         {
@@ -90,6 +89,7 @@ namespace The_Restaurant
                 graphics.Draw(kvp.Value.Name, kvp.Value.SetX, kvp.Value.SetY, kvp.Value.CompanyList);
             }
             graphics.Draw("Kö", 100, 5, queue.First());
+            graphics.Draw("Köket", 40, 0, chef);
         }
         public void CreateQueue()
         {
@@ -103,16 +103,16 @@ namespace The_Restaurant
 
         public void CreateTables()
         {
-            tableDictionary.Add(0, new Table { Name = "Bord 1", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 0, SetY = 7, CompanyList = new List<Guest>() });
-            tableDictionary.Add(1, new Table { Name = "Bord 2", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 20, SetY = 7, CompanyList = new List<Guest>() });
-            tableDictionary.Add(2, new Table { Name = "Bord 3", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 40, SetY = 7, CompanyList = new List<Guest>() });
-            tableDictionary.Add(3, new Table { Name = "Bord 4", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 60, SetY = 7, CompanyList = new List<Guest>() });
-            tableDictionary.Add(4, new Table { Name = "Bord 5", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 80, SetY = 7, CompanyList = new List<Guest>() });
-            tableDictionary.Add(5, new Table { Name = "Bord 6", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 2, SetX = 0, SetY = 17, CompanyList = new List<Guest>() });
-            tableDictionary.Add(6, new Table { Name = "Bord 7", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 2, SetX = 20, SetY = 17, CompanyList = new List<Guest>() });
-            tableDictionary.Add(7, new Table { Name = "Bord 8", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 2, SetX = 40, SetY = 17, CompanyList = new List<Guest>() });
-            tableDictionary.Add(8, new Table { Name = "Bord 9", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 2, SetX = 60, SetY = 17, CompanyList = new List<Guest>() });
-            tableDictionary.Add(9, new Table { Name = "Bord 10", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 2, SetX = 80, SetY = 17, CompanyList = new List<Guest>() });
+            tableDictionary.Add(0, new Table { Name = "Bord 1", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 0, SetY = 10, CompanyList = new List<Guest>() });
+            tableDictionary.Add(1, new Table { Name = "Bord 2", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 20, SetY = 10, CompanyList = new List<Guest>() });
+            tableDictionary.Add(2, new Table { Name = "Bord 3", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 40, SetY = 10, CompanyList = new List<Guest>() });
+            tableDictionary.Add(3, new Table { Name = "Bord 4", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 60, SetY = 10, CompanyList = new List<Guest>() });
+            tableDictionary.Add(4, new Table { Name = "Bord 5", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 4, SetX = 80, SetY = 10, CompanyList = new List<Guest>() });
+            tableDictionary.Add(5, new Table { Name = "Bord 6", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 2, SetX = 0, SetY = 20, CompanyList = new List<Guest>() });
+            tableDictionary.Add(6, new Table { Name = "Bord 7", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 2, SetX = 20, SetY = 20, CompanyList = new List<Guest>() });
+            tableDictionary.Add(7, new Table { Name = "Bord 8", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 2, SetX = 40, SetY = 20, CompanyList = new List<Guest>() });
+            tableDictionary.Add(8, new Table { Name = "Bord 9", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 2, SetX = 60, SetY = 20, CompanyList = new List<Guest>() });
+            tableDictionary.Add(9, new Table { Name = "Bord 10", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 2, SetX = 80, SetY = 20, CompanyList = new List<Guest>() });
 
         }
 
