@@ -16,6 +16,27 @@ namespace The_Restaurant
             Price = price;
             Name = name;
         }
+        public Menu CourseFromMenu()
+        {
+            //SendMethodClass myMenu = new SendMethodClass();
+
+            List<Menu> Course = new List<Menu>();
+            Course.Add(new Flounder(125, "Flundra"));
+            Course.Add(new Salmon(300, "Lax"));
+            Course.Add(new Sirloin_Steak(210, "Ryggbiff"));
+            Course.Add(new Cod(155, "Torsk"));
+            Course.Add(new Bolognese(140, "Bolognese"));
+            Course.Add(new Beef_Tender_Loin(380, "Oxfile"));
+            Course.Add(new Halloumi(80, "Halloumi"));
+            Course.Add(new Cauliflower_Mash(60, "Blomkålsröra"));
+            Course.Add(new Vego_HappyMeal(85, "Vego Happy Meal"));
+
+            Random rnd = new Random();
+            int index = rnd.Next(0, Course.Count - 1);
+
+            //myMenu.listCalc(MenuList);
+            return Course[index];
+        }
     }
 
     public class Flounder : Menu

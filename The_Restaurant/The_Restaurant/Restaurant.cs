@@ -22,6 +22,7 @@ namespace The_Restaurant
         Company company = new Company();
         Table table = new Table();
         Graphics graphics = new Graphics();
+        Menu menu = new Menu(0,"");
 
 
         public void Welcome()
@@ -35,7 +36,9 @@ namespace The_Restaurant
                 chef.Add(new Chef());
             }
             CreateQueue();
-            CreateTables();         
+            CreateTables();
+            menu = menu.CourseFromMenu();
+            
         }
         private void PlaceCompanyAtTable()
         {
