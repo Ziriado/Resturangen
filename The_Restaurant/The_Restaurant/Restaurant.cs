@@ -45,6 +45,13 @@ namespace The_Restaurant
                 {
                     tableDictionary[i].CompanyList.AddRange(queue.Dequeue());
                     tableDictionary[i].IsOccupied = true;
+                    foreach (Waitress w in waitress)
+                    {
+                        w.SetY = tableDictionary[i].SetY - 3;
+                        w.SetX = tableDictionary[i].SetX;
+                    }
+                    //waitress[i].SetY = tableDictionary[i].SetY - 3;
+                    //waitress[i].SetX = tableDictionary[i].SetX;
                     break;
                 }
                 else if (tableDictionary[i].CompanyList.Count == 0 && tableDictionary[i].TableSize >= tableDictionary[i].CompanyList.Count)
