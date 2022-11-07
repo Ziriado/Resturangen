@@ -38,6 +38,18 @@ namespace The_Restaurant
             Random rnd = new Random();
             Skill = rnd.Next(1, 6);
         }
+        public void TakeCompanyOrderToChef()
+        {
+
+        }
+        public void MoveToKitchen()
+        {
+
+        }
+        public void MoveToTables()
+        {
+
+        }
     }
     class Chef : IPerson
     {
