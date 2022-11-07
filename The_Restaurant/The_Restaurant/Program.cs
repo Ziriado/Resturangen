@@ -6,8 +6,15 @@
         {
             Restaurant restaurant = new Restaurant();
             restaurant.Welcome();
+            restaurant.DrawRestaurant();
 
-            Console.ReadKey();
+            while (true)
+            {
+                Console.ReadKey();
+                restaurant.PerformRound();
+                restaurant.DrawRestaurant();
+                
+            }
         }
     }
 }

@@ -19,9 +19,9 @@ namespace The_Restaurant
         public int SetY { get; set; }
         public int SetX { get; set; }
 
-        public List<List<Guest>> CompanyList { get; set; }
+        public List<Guest> CompanyList { get; set; }
 
-        public Table(string name, bool isOccupied, bool isDirty, int tableSize, int tableQuality, int setY, int setX, List<List<Guest>> CompanyList)
+        public Table(string name, bool isOccupied, bool isDirty, int tableSize, int tableQuality, int setY, int setX, List<Guest> CompanyList)
         {
             Name = name;
             IsOccupied = isOccupied;
@@ -30,7 +30,7 @@ namespace The_Restaurant
             TableQuality = tableQuality;
             SetY = setY;
             SetX = setX;
-            CompanyList = new List<List<Guest>>();
+            CompanyList = new List<Guest>();
 
 
         }
