@@ -35,6 +35,8 @@ namespace The_Restaurant
         public bool IsAvailable { get; set; }
         public string Name { get; set; }
         public int Skill { get; set; }
+
+        
         public Waitress(bool isAvailable, int setX, int setY)
         {
             Name = The_Restaurant.Company.LastName();
@@ -44,10 +46,7 @@ namespace The_Restaurant
             Random rnd = new Random();
             Skill = rnd.Next(1, 6);
         }
-        public void SendFoodToTable()
-        {
-
-        }
+      
         public void TakeCompanyOrderToChef()
         {
             
@@ -67,11 +66,13 @@ namespace The_Restaurant
     }
     class Chef : IPerson
     {
+        Restaurant restaurant = new Restaurant();
         Waitress Waitress { get; set; }
         public string Name { get; set; }
         public int Skill { get; set; }
 
         public int CookingTime { get; set; }
+        public Queue<List<Menu>> Orders { get; set; } = new Queue<List<Menu>>();
 
         public Chef()
         {
@@ -80,14 +81,17 @@ namespace The_Restaurant
             Skill = rnd.Next(1, 6);
             CookingTime = 10;
         }
-        public void CookFood()
+        public void CookFood(Queue<List<Menu>>Orders)
         {
             CookingTime--;
 
             if (CookingTime == 0)
             {
-                Waitress.SendFoodToTable();
+                restaurant.SendFoodToTable(Orders);
+                Orders.Dequeue();
+                CookingTime = 10;
             }
+
         }
 
 

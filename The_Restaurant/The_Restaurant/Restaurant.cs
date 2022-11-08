@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -12,10 +13,11 @@ namespace The_Restaurant
     {
         List<Table> tables { get; set; } = new List<Table>();
         List<Waitress> waitress { get; set; } = new List<Waitress>();
-        List<Chef> chef { get; set; } = new List<Chef>();
+        List<Chef> ListOfChef { get; set; } = new List<Chef>();
         Queue<List<Guest>> queue { get; set; } = new Queue<List<Guest>>();
 
         Dictionary<int, Table> tableDictionary = new Dictionary<int, Table>();
+        Dictionary<int, Menu> orderDictionary = new Dictionary<int, Menu>();
 
         
 
@@ -23,6 +25,7 @@ namespace The_Restaurant
         Table table = new Table();
         Graphics graphics = new Graphics();
         Menu menu = new Menu(0,"");
+        Chef chef = new Chef();
 
 
         public void Welcome()
@@ -33,11 +36,12 @@ namespace The_Restaurant
             }
             for (int i = 0; i < 1; i++)
             {
-                chef.Add(new Chef());
+                ListOfChef.Add(new Chef());
             }
             CreateQueue();
             CreateTables();
-            
+            CreateOrderDictionary();
+
         }
         private void PlaceCompanyAtTable()
         {
@@ -115,29 +119,41 @@ namespace The_Restaurant
             {
                 if (w.IsAvailable == true && w.SetX != 40)
                 {
+                    chef.Orders.Enqueue(OrderFood());
                     w.MoveToKitchen(waitress);
+                    chef.CookFood(chef.Orders);
                 }
-                //else
-                //{
-                //    OrderFood();
-                //}
             }
         }
-        private void OrderFood()
+        private List<Menu> OrderFood()
         {
             List<Menu> foods = new List<Menu>();
             for (int i = 0; i < tableDictionary.Values.Count; i++)
             {
-                if (tableDictionary[i].IsOccupied == true)
+                for (int k = 0; k < orderDictionary.Values.Count; k++)
                 {
-                    for (int j = 0; j < tableDictionary[i].CompanyList.Count; j++)
+                    if (tableDictionary[i].IsOccupied == true)
                     {
-                        foods.Add(menu.CourseFromMenu());
+                        for (int j = 0; j < tableDictionary[i].CompanyList.Count; j++)
+                        {
+                            orderDictionary.Add(0, menu.CourseFromMenu());
+                        }
                     }
                 }
             }
+            return foods;
         }
-        
+        public void SendFoodToTable(Queue<List<Menu>> Orders)
+        {
+            foreach (Waitress w in waitress)
+            {
+                if (w.IsAvailable == true)
+                {
+
+                }
+            }
+        }
+
         public void DrawRestaurant()
         {
             Console.Clear();
@@ -150,7 +166,7 @@ namespace The_Restaurant
                 graphics.Draw(kvp.Value.Name, kvp.Value.SetX, kvp.Value.SetY, kvp.Value.CompanyList);
             }
             graphics.Draw("Kö", 100, 5, queue.First());
-            graphics.Draw("Köket", 40, 0, chef);
+            graphics.Draw("Köket", 40, 0, ListOfChef);
         }
         private void CreateQueue()
         {
@@ -176,6 +192,18 @@ namespace The_Restaurant
             tableDictionary.Add(9, new Table { Name = "Bord 10", IsDirty = false, IsOccupied = false, TableQuality = 5, TableSize = 2, SetX = 80, SetY = 20, CompanyList = new List<Guest>() });
 
         }
-
+        public void CreateOrderDictionary()
+        {
+            orderDictionary.Add(0, new Menu(0," "));
+            orderDictionary.Add(1, new Menu(0, " "));
+            orderDictionary.Add(2, new Menu(0, " "));
+            orderDictionary.Add(3, new Menu(0, " "));
+            orderDictionary.Add(4, new Menu(0, " "));
+            orderDictionary.Add(5, new Menu(0, " "));
+            orderDictionary.Add(6, new Menu(0, " "));
+            orderDictionary.Add(7, new Menu(0, " "));
+            orderDictionary.Add(8, new Menu(0, " "));
+            orderDictionary.Add(9, new Menu(0, " "));
+        }
     }
 }
