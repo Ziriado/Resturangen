@@ -66,7 +66,7 @@ namespace The_Restaurant
     }
     class Chef : IPerson
     {
-        Restaurant restaurant = new Restaurant();
+       // Restaurant restaurant = new Restaurant();
         Waitress Waitress { get; set; }
         public string Name { get; set; }
         public int Skill { get; set; }
@@ -84,10 +84,9 @@ namespace The_Restaurant
         public void CookFood(Queue<List<Menu>>Orders)
         {
             CookingTime--;
-
+            
             if (CookingTime == 0)
-            {
-                restaurant.SendFoodToTable(Orders);
+            {                
                 Orders.Dequeue();
                 CookingTime = 10;
             }

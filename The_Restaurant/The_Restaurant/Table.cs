@@ -12,6 +12,7 @@ namespace The_Restaurant
         public bool IsOccupied { get; set; }
 
         public bool IsDirty { get; set; }
+        public bool HasOrderd { get; set; }
 
         public int TableSize { get; set; }
 
@@ -23,11 +24,12 @@ namespace The_Restaurant
 
         public List<Menu> menus { get; set; } = new List<Menu>();
 
-        public Table(string name, bool isOccupied, bool isDirty, int tableSize, int tableQuality, int setY, int setX, List<Guest> CompanyList)
+        public Table(string name, bool isOccupied, bool isDirty,bool hasOrderd, int tableSize, int tableQuality, int setY, int setX, List<Guest> CompanyList)
         {
             Name = name;
             IsOccupied = isOccupied;
             IsDirty = isDirty;
+            HasOrderd = hasOrderd;
             TableSize = tableSize;
             TableQuality = tableQuality;
             SetY = setY;

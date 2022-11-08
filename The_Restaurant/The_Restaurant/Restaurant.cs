@@ -17,7 +17,7 @@ namespace The_Restaurant
         Queue<List<Guest>> queue { get; set; } = new Queue<List<Guest>>();
 
         Dictionary<int, Table> tableDictionary = new Dictionary<int, Table>();
-        Dictionary<int, Menu> orderDictionary = new Dictionary<int, Menu>();
+        Dictionary<int, List<Menu>> orderDictionary = new Dictionary<int, List<Menu>>();
 
         
 
@@ -40,7 +40,7 @@ namespace The_Restaurant
             }
             CreateQueue();
             CreateTables();
-            CreateOrderDictionary();
+            //CreateOrderDictionary();
 
         }
         private void PlaceCompanyAtTable()
@@ -119,29 +119,33 @@ namespace The_Restaurant
             {
                 if (w.IsAvailable == true && w.SetX != 40)
                 {
-                    chef.Orders.Enqueue(OrderFood());
+                    OrderFood();
                     w.MoveToKitchen(waitress);
                     chef.CookFood(chef.Orders);
                 }
             }
         }
-        private List<Menu> OrderFood()
+        private void  OrderFood()
         {
             List<Menu> foods = new List<Menu>();
-            for (int i = 0; i < tableDictionary.Values.Count; i++)
+            int x = 0;
+            for (int i = 0; i < tableDictionary.Keys.Count; i++)
             {
-                for (int k = 0; k < orderDictionary.Values.Count; k++)
-                {
+                //for (int k = 0; k < orderDictionary.Values.Count; k++)
+                //{
                     if (tableDictionary[i].IsOccupied == true)
                     {
+                    x = i;
                         for (int j = 0; j < tableDictionary[i].CompanyList.Count; j++)
                         {
-                            orderDictionary.Add(0, menu.CourseFromMenu());
+                            foods.Add(menu.CourseFromMenu());
+                            //rderDictionary.Add(0, foods);
                         }
                     }
-                }
+                //}
             }
-            return foods;
+            orderDictionary.Add(x, foods);
+            
         }
         public void SendFoodToTable(Queue<List<Menu>> Orders)
         {
@@ -194,16 +198,16 @@ namespace The_Restaurant
         }
         public void CreateOrderDictionary()
         {
-            orderDictionary.Add(0, new Menu(0," "));
-            orderDictionary.Add(1, new Menu(0, " "));
-            orderDictionary.Add(2, new Menu(0, " "));
-            orderDictionary.Add(3, new Menu(0, " "));
-            orderDictionary.Add(4, new Menu(0, " "));
-            orderDictionary.Add(5, new Menu(0, " "));
-            orderDictionary.Add(6, new Menu(0, " "));
-            orderDictionary.Add(7, new Menu(0, " "));
-            orderDictionary.Add(8, new Menu(0, " "));
-            orderDictionary.Add(9, new Menu(0, " "));
+            orderDictionary.Add(0, new List<Menu>());
+            orderDictionary.Add(1, new List<Menu>());
+            orderDictionary.Add(2, new List<Menu>());
+            orderDictionary.Add(3, new List<Menu>());
+            orderDictionary.Add(4, new List<Menu>());
+            orderDictionary.Add(5, new List<Menu>());
+            orderDictionary.Add(6, new List<Menu>());
+            orderDictionary.Add(7, new List<Menu>());
+            orderDictionary.Add(8, new List<Menu>());
+            orderDictionary.Add(9, new List<Menu>());
         }
     }
 }
