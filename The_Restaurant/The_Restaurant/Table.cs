@@ -21,6 +21,8 @@ namespace The_Restaurant
 
         public List<Guest> CompanyList { get; set; }
 
+        public List<Menu> menus { get; set; } = new List<Menu>();
+
         public Table(string name, bool isOccupied, bool isDirty, int tableSize, int tableQuality, int setY, int setX, List<Guest> CompanyList)
         {
             Name = name;

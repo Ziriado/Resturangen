@@ -15,13 +15,19 @@ namespace The_Restaurant
     {
         public string Name { get; set; }
 
+        public int Cash { get; set; }
+
         public Guest()
         {
             Name = The_Restaurant.Company.LastName();
+            Random rnd = new Random();
+            Cash = rnd.Next(180, 500);
         }
     }
     class Waitress : IPerson
     {
+        Chef Chef { get; set; }
+        Restaurant restaurant = new Restaurant();
         public int NumberOfWaitresses { get; set; } = 3;
 
         public int SetX { get; set; }
@@ -38,13 +44,21 @@ namespace The_Restaurant
             Random rnd = new Random();
             Skill = rnd.Next(1, 6);
         }
-        public void TakeCompanyOrderToChef()
+        public void SendFoodToTable()
         {
 
         }
-        public void MoveToKitchen()
+        public void TakeCompanyOrderToChef()
         {
-
+            
+        }
+        public void MoveToKitchen(List<Waitress> waitresses)
+        {
+            foreach (Waitress waitress in waitresses)
+            {
+                waitress.SetX = 40;
+                waitress.SetY = 3;
+            }
         }
         public void MoveToTables()
         {
@@ -53,14 +67,29 @@ namespace The_Restaurant
     }
     class Chef : IPerson
     {
+        Waitress Waitress { get; set; }
         public string Name { get; set; }
         public int Skill { get; set; }
+
+        public int CookingTime { get; set; }
 
         public Chef()
         {
             Name = The_Restaurant.Company.LastName();
             Random rnd = new Random();
             Skill = rnd.Next(1, 6);
+            CookingTime = 10;
         }
+        public void CookFood()
+        {
+            CookingTime--;
+
+            if (CookingTime == 0)
+            {
+                Waitress.SendFoodToTable();
+            }
+        }
+
+
     }
 }
