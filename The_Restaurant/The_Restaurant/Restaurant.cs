@@ -43,63 +43,60 @@ namespace The_Restaurant
             
 
         }
-        private void PlaceCompanyAtTable()
+        private int PlaceCompanyAtTable()
         {
             List<Guest> tempList = new List<Guest>();
             tempList.AddRange(queue.Dequeue());
-
-            for (int i = 0; i < tableDictionary.Count; i++)
+            int tableNr;
+            for (tableNr=1; tableNr < tableDictionary.Count+1; tableNr++)
             {               
-                if (tableDictionary[i].IsOccupied == false && tableDictionary[i].IsDirty == false && tableDictionary[i].CompanyList.Count == 0)
+                if (tableDictionary[tableNr].IsOccupied == false && tableDictionary[tableNr].IsDirty == false && tableDictionary[tableNr].CompanyList.Count == 0)
                 {
-                    if (tableDictionary[i].TableSize == 4 && tempList.Count >= 3)
+                    if (tableDictionary[tableNr].TableSize == 4 && tempList.Count >= 3)
                     {
-                        tableDictionary[i].CompanyList.AddRange(tempList);
-                        tableDictionary[i].IsOccupied = true;
+                        tableDictionary[tableNr].CompanyList.AddRange(tempList);
+                        tableDictionary[tableNr].IsOccupied = true;
                         foreach (Waitress w in waitress)
                         {
-                            w.SetY = tableDictionary[i].SetY - 3;
-                            w.SetX = tableDictionary[i].SetX;
+                            w.SetY = tableDictionary[tableNr].SetY - 3;
+                            w.SetX = tableDictionary[tableNr].SetX;
                         }
                         break;
                     }
-                    else if (tableDictionary[i].TableSize == 2 && tempList.Count <= 2 && tableDictionary[i].CompanyList.Count == 0)
+                    else if (tableDictionary[tableNr].TableSize == 2 && tempList.Count <= 2 && tableDictionary[tableNr].CompanyList.Count == 0)
                     {
-                        tableDictionary[i].CompanyList.AddRange(tempList);
-                        tableDictionary[i].IsOccupied = true;
+                        tableDictionary[tableNr].CompanyList.AddRange(tempList);
+                        tableDictionary[tableNr].IsOccupied = true;
 
                         foreach (Waitress w in waitress)
                         {
-                            w.SetY = tableDictionary[i].SetY - 3;
-                            w.SetX = tableDictionary[i].SetX;
+                            w.SetY = tableDictionary[tableNr].SetY - 3;
+                            w.SetX = tableDictionary[tableNr].SetX;
                         }
                         break;
                     }
                 }
             }
+            return tableNr;
         }
         public void PerformRound()
         {
-            foreach (Waitress allWaitress in waitress)
+            int tableNr;
+            for (int i=0; i< waitress.Count; i++)
             {
-                allWaitress.IsAvailable = true;
-                if (allWaitress.IsAvailable == true && queue is not null && allWaitress.SetX != 100)
+                waitress[i].IsAvailable = true;
+                if (waitress[i].IsAvailable == true && queue is not null && waitress[i].SetX != 100)
                 {
                     WaitressGoToEntrence(waitress);
                 }
                 else
                 {
-                    PlaceCompanyAtTable();
-                    allWaitress.IsAvailable = false;
+                    tableNr = PlaceCompanyAtTable();
+                    waitress[i].IsAvailable = false;
+                    OrderFood(tableNr);
                 }
             }
-            for (int i = 0; i < tableDictionary.Values.Count; i++)
-            {
-                if (tableDictionary[i].IsOccupied == true)
-                {
-                    TakeCompanyOrderToChef();
-                }
-            }
+              
         }
         private void WaitressGoToEntrence(List<Waitress> waitresses)
         {
@@ -112,7 +109,8 @@ namespace The_Restaurant
                 }   
             }
         }
-        private void TakeCompanyOrderToChef()
+
+        private void TakeCompanyOrderToChef(int tableNumber)
         {
             foreach (Waitress w in waitress)
             {
@@ -125,13 +123,12 @@ namespace The_Restaurant
         }
         private void OrderFood(int tableNumber)
         {
-            List<Menu> foods = new List<Menu>();            
-                
-            for (int i = 0; i < tableDictionary[i].CompanyList.Count; i++)
-            {
-               foods.Add(menu.CourseFromMenu());                           
-            }
-            orderDictionary.Add(tableNumber, foods);
+            List<Menu> foods = new List<Menu>();
+                for (int i = 1; i < tableDictionary[i].CompanyList.Count + 1; i++)
+                {
+                    foods.Add(menu.CourseFromMenu());
+                }
+                orderDictionary.Add(tableNumber, foods);
             
         }
         public void SendFoodToTable(Queue<List<Menu>> Orders)
