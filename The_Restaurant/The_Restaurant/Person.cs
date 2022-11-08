@@ -81,13 +81,12 @@ namespace The_Restaurant
             Skill = rnd.Next(1, 6);
             CookingTime = 10;
         }
-        public void CookFood(Queue<List<Menu>>Orders)
+        public void CookFood()
         {
             CookingTime--;
             
             if (CookingTime == 0)
             {                
-                Orders.Dequeue();
                 CookingTime = 10;
             }
 

@@ -96,6 +96,11 @@ namespace The_Restaurant
                     OrderFood(tableNr);
                 }
             }
+            if(orderDictionary != null)
+            {
+                //TakeCompanyOrderToChef();
+                chef.CookFood();
+            }
               
         }
         private void WaitressGoToEntrence(List<Waitress> waitresses)
@@ -110,26 +115,31 @@ namespace The_Restaurant
             }
         }
 
-        private void TakeCompanyOrderToChef(int tableNumber)
+        private void TakeCompanyOrderToChef()
         {
             foreach (Waitress w in waitress)
             {
                 if (w.IsAvailable == true && w.SetX != 40)
                 {                   
                     w.MoveToKitchen(waitress);
-                    chef.CookFood(chef.Orders);
                 }
+
             }
         }
         private void OrderFood(int tableNumber)
         {
+            
             List<Menu> foods = new List<Menu>();
-                for (int i = 1; i < tableDictionary[i].CompanyList.Count + 1; i++)
+            
+            for (int i = 1; i < tableDictionary.Keys.Count+1; i++)
+            {
+                for (int j = 1; j < tableDictionary[i].CompanyList.Count + 1; j++)
                 {
                     foods.Add(menu.CourseFromMenu());
                 }
-                orderDictionary.Add(tableNumber, foods);
-            
+            }
+            orderDictionary.Add(tableNumber, foods);
+
         }
         public void SendFoodToTable(Queue<List<Menu>> Orders)
         {
