@@ -66,13 +66,13 @@ namespace The_Restaurant
     }
     class Chef : IPerson
     {
-       // Restaurant restaurant = new Restaurant();
+        // Restaurant restaurant = new Restaurant();
         Waitress Waitress { get; set; }
         public string Name { get; set; }
         public int Skill { get; set; }
 
         public int CookingTime { get; set; }
-        public Queue<List<Menu>> Orders { get; set; } = new Queue<List<Menu>>();
+        public Queue<KeyValuePair<int, List<Menu>>> chefOrders = new Queue<KeyValuePair<int, List<Menu>>>();
 
         public Chef()
         {
