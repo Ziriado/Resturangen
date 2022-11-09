@@ -12,10 +12,10 @@ namespace The_Restaurant
 {
     internal class Restaurant
     {
-        List<Table> tables { get; set; } = new List<Table>();
-        List<Waitress> waitress { get; set; } = new List<Waitress>();
+        List<Table> Tables { get; set; } = new List<Table>();
+        List<Waitress> Waitress { get; set; } = new List<Waitress>();
         List<Chef> ListOfChef { get; set; } = new List<Chef>();
-        Queue<List<Guest>> queue { get; set; } = new Queue<List<Guest>>();
+        Queue<List<Guest>> QueueCompany { get; set; } = new Queue<List<Guest>>();
 
         Dictionary<int, Table> tableDictionary = new Dictionary<int, Table>();
         Dictionary<int, List<Menu>> orderDictionary = new Dictionary<int, List<Menu>>();
@@ -31,7 +31,7 @@ namespace The_Restaurant
         {
             for (int i = 0; i < 1; i++)
             {
-                waitress.Add(new Waitress(true, 0, 0));
+                Waitress.Add(new Waitress(true, 0, 0));
             }
             for (int i = 0; i < 1; i++)
             {
@@ -42,31 +42,61 @@ namespace The_Restaurant
             
 
         }
+
+        public void PerformRound()
+        {
+            int tableNr;
+            bool availableTable = false;
+
+            availableTable = CheckAvailableTable(availableTable);
+
+            if (availableTable == true)
+            {
+                for (int i = 0; i < Waitress.Count; i++)
+                {
+                    Waitress[i].IsAvailable = true;
+                    //if(orderDictionary!= null)
+                    //{
+                    //    TakeCompanyOrderToChef();
+                    //    chef.CookFood();
+                    //}
+                    if (Waitress[i].IsAvailable == true && QueueCompany is not null && Waitress[i].SetX != 100)
+                    {
+                        WaitressGoToEntrence(Waitress);
+                    }
+                    else if (Waitress[i].SetX == 100)
+                    {
+                        tableNr = PlaceCompanyAtTable();
+                        OrderFood(tableNr);
+                        Waitress[i].IsAvailable = false;
+                    }
+                }
+            }
+        }
         private int PlaceCompanyAtTable()
         {
-            List<Guest> tempList = new List<Guest>();
             int tableNr;
-            for (tableNr=1; tableNr < tableDictionary.Count+1; tableNr++)
-            {               
+            for (tableNr = 1; tableNr < tableDictionary.Count + 1; tableNr++)
+            {
                 if (tableDictionary[tableNr].IsOccupied == false && tableDictionary[tableNr].IsDirty == false && tableDictionary[tableNr].CompanyList.Count == 0)
                 {
-                    if (tableDictionary[tableNr].TableSize == 4 && queue.First().Count >= 3)
+                    if (tableDictionary[tableNr].TableSize == 4 && QueueCompany.First().Count >= 3)
                     {
-                        tableDictionary[tableNr].CompanyList.AddRange(queue.Dequeue());
+                        tableDictionary[tableNr].CompanyList.AddRange(QueueCompany.Dequeue());
                         tableDictionary[tableNr].IsOccupied = true;
-                        foreach (Waitress w in waitress)
+                        foreach (Waitress w in Waitress)
                         {
                             w.SetY = tableDictionary[tableNr].SetY - 3;
                             w.SetX = tableDictionary[tableNr].SetX;
                         }
                         break;
                     }
-                    else if (tableDictionary[tableNr].TableSize == 2 && queue.First().Count <= 2 && tableDictionary[tableNr].CompanyList.Count == 0)
+                    else if (tableDictionary[tableNr].TableSize == 2 && QueueCompany.First().Count <= 2 && tableDictionary[tableNr].CompanyList.Count == 0)
                     {
-                        tableDictionary[tableNr].CompanyList.AddRange(queue.Dequeue());
+                        tableDictionary[tableNr].CompanyList.AddRange(QueueCompany.Dequeue());
                         tableDictionary[tableNr].IsOccupied = true;
 
-                        foreach (Waitress w in waitress)
+                        foreach (Waitress w in Waitress)
                         {
                             w.SetY = tableDictionary[tableNr].SetY - 3;
                             w.SetX = tableDictionary[tableNr].SetX;
@@ -77,58 +107,23 @@ namespace The_Restaurant
             }
             return tableNr;
         }
-        public void PerformRound()
-        {
-            int tableNr;
-            bool availableTable = false;
-
-            availableTable = CheckAvailableTable(availableTable);
-
-            if (availableTable == true)
-            {
-                for (int i = 0; i < waitress.Count; i++)
-                {
-                    waitress[i].IsAvailable = true;
-                    if (waitress[i].IsAvailable == true && queue is not null && waitress[i].SetX != 100)
-                    {
-                        WaitressGoToEntrence(waitress);
-                    }
-                    else
-                    {
-                        tableNr = PlaceCompanyAtTable();
-                        waitress[i].IsAvailable = false;
-                        OrderFood(tableNr);
-                    }
-                }
-            }
-            if(orderDictionary != null)
-            {
-                //TakeCompanyOrderToChef();
-                chef.CookFood();
-            }
-              
-        }
         private void WaitressGoToEntrence(List<Waitress> waitresses)
         {
             foreach (Waitress w in waitresses)
             {
-                if (w.IsAvailable == true && queue is not null)
-                {
                     w.SetX = 100;
                     w.SetY = 3;
-                }   
             }
         }
 
         private void TakeCompanyOrderToChef()
         {
-            foreach (Waitress w in waitress)
+            foreach (Waitress w in Waitress)
             {
                 if (w.IsAvailable == true && w.SetX != 40)
-                {                   
-                    w.MoveToKitchen(waitress);
+                {
+                    w.MoveToKitchen(Waitress);
                 }
-
             }
         }
         private void OrderFood(int tableNumber)
@@ -141,13 +136,12 @@ namespace The_Restaurant
                 {   
                 foods.Add(menu.CourseFromMenu());                  
                 }      
-           
                 orderDictionary.Add(tableNumber, foods);
             }            
         }
         public void SendFoodToTable(Queue<List<Menu>> Orders)
         {
-            foreach (Waitress w in waitress)
+            foreach (Waitress w in Waitress)
             {
                 if (w.IsAvailable == true)
                 {
@@ -159,15 +153,15 @@ namespace The_Restaurant
         public void DrawRestaurant()
         {
             Console.Clear();
-            foreach (Waitress w in waitress)
+            foreach (Waitress w in Waitress)
             {
-                graphics.Draw("Servitör", w.SetX, w.SetY, waitress);
+                graphics.Draw("Servitör", w.SetX, w.SetY, Waitress);
             }
             foreach (KeyValuePair<int, Table> kvp in tableDictionary)
             {
                 graphics.Draw(kvp.Value.Name, kvp.Value.SetX, kvp.Value.SetY, kvp.Value.CompanyList);
             }
-            graphics.Draw("Kö", 100, 5, queue.First());
+            graphics.Draw("Kö", 100, 5, QueueCompany.First());
             graphics.Draw("Köket", 40, 0, ListOfChef);
         }
         private void CreateQueue()
@@ -176,7 +170,7 @@ namespace The_Restaurant
 
             for (int i = 0; i < company.NumberOfCompanies; i++)
             {
-                queue.Enqueue(company.RandomizeCompany());
+                QueueCompany.Enqueue(company.RandomizeCompany());
             }
         }
 
@@ -200,7 +194,7 @@ namespace The_Restaurant
             {
                 if (tableDictionary[i].IsOccupied == false)
                 {
-                    if (tableDictionary[i].TableSize == 4 && queue.First().Count >= 3 || tableDictionary[i].TableSize == 2 && queue.First().Count <= 2)
+                    if (tableDictionary[i].TableSize == 4 && QueueCompany.First().Count >= 3 || tableDictionary[i].TableSize == 2 && QueueCompany.First().Count <= 2)
                         availableTables = true;
                 }
             }
