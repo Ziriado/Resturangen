@@ -19,6 +19,7 @@ namespace The_Restaurant
 
         Dictionary<int, Table> tableDictionary = new Dictionary<int, Table>();
         Dictionary<int, List<Menu>> orderDictionary = new Dictionary<int, List<Menu>>();
+        List <string> NewsFeed = new List<string>();
 
         Company company = new Company();
         Table table = new Table();
@@ -55,7 +56,7 @@ namespace The_Restaurant
                 for (int i = 0; i < Waitress.Count; i++)
                 {
                     Waitress[i].IsAvailable = true;
-                    //if(orderDictionary!= null)
+                    //if (orderDictionary != null)
                     //{
                     //    TakeCompanyOrderToChef();
                     //    chef.CookFood();
@@ -111,8 +112,9 @@ namespace The_Restaurant
         {
             foreach (Waitress w in waitresses)
             {
-                    w.SetX = 100;
-                    w.SetY = 3;
+                w.SetX = 100;
+                w.SetY = 3;
+                NewsFeed.Add("Servitören " + w.Name + " går till entren.");
             }
         }
 
@@ -137,6 +139,12 @@ namespace The_Restaurant
                 foods.Add(menu.CourseFromMenu());                  
                 }      
                 orderDictionary.Add(tableNumber, foods);
+                for (int i = 0; i < foods.Count; i++)
+                {
+                    string result = tableDictionary[tableNumber].CompanyList[i].Cash >= foods[i].Price ? "har råd." : "har inte råd och får diska.";
+                    NewsFeed.Add("Vid bord " + tableNumber + " sitter " + tableDictionary[tableNumber].CompanyList[i].Name + " och beställer " + foods[i].Name + " som kostar " + foods[i].Price + " kr. "
+                    + tableDictionary[tableNumber].CompanyList[i].Name + " har " + tableDictionary[tableNumber].CompanyList[i].Cash + " kr och " + result);                     
+                }
             }            
         }
         public void SendFoodToTable(Queue<List<Menu>> Orders)
@@ -163,6 +171,15 @@ namespace The_Restaurant
             }
             graphics.Draw("Kö", 100, 5, QueueCompany.First());
             graphics.Draw("Köket", 40, 0, ListOfChef);
+
+            Console.SetCursorPosition(0, 25);
+            for (int i = NewsFeed.Count - 1; i >= 0; i--)
+            {
+                if (NewsFeed.Count - i <= 15)
+                {
+                    Console.WriteLine(i + ": " + NewsFeed[i] + "                                                      ");
+                }
+            }
         }
         private void CreateQueue()
         {
