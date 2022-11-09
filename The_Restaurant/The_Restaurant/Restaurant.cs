@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -18,8 +19,6 @@ namespace The_Restaurant
 
         Dictionary<int, Table> tableDictionary = new Dictionary<int, Table>();
         Dictionary<int, List<Menu>> orderDictionary = new Dictionary<int, List<Menu>>();
-
-        
 
         Company company = new Company();
         Table table = new Table();
@@ -127,19 +126,19 @@ namespace The_Restaurant
             }
         }
         private void OrderFood(int tableNumber)
-        {
-            
+        {            
             List<Menu> foods = new List<Menu>();
-            
-            for (int i = 1; i < tableDictionary.Keys.Count+1; i++)
-            {
-                for (int j = 1; j < tableDictionary[i].CompanyList.Count + 1; j++)
-                {
-                    foods.Add(menu.CourseFromMenu());
-                }
-            }
-            orderDictionary.Add(tableNumber, foods);
+            foods.Clear();
 
+            for (int j = 1; j < tableDictionary[tableNumber].CompanyList.Count + 1; j++)
+            {
+                    
+                foods.Add(menu.CourseFromMenu());                  
+            }      
+            if (tableNumber <= 10)
+            {
+                orderDictionary.Add(tableNumber, foods);
+            }            
         }
         public void SendFoodToTable(Queue<List<Menu>> Orders)
         {
