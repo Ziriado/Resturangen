@@ -17,6 +17,8 @@ namespace The_Restaurant
         Queue<List<Guest>> QueueCompany { get; set; } = new Queue<List<Guest>>();
         List <string> NewsFeed { get; set; } = new List<string>();
 
+        List <Guest> ListOfDishers { get; set;} = new List<Guest>();
+
         Dictionary<int, Table> tableDictionary = new Dictionary<int, Table>();
         Dictionary<int, List<Menu>> orderDictionary = new Dictionary<int, List<Menu>>();
 
@@ -157,6 +159,9 @@ namespace The_Restaurant
 
         public void DrawRestaurant()
         {
+            List<Guest> empty = new List<Guest>();
+            //empty.Add(new Guest());
+
             Console.Clear();
             foreach (Waitress w in ListOfWaitress)
             {
@@ -168,6 +173,8 @@ namespace The_Restaurant
             }
             graphics.Draw("Kö", 100, 5, QueueCompany.First());
             graphics.Draw("Köket", 40, 0, ListOfChef);
+            graphics.Draw("Diskbåset", 70, 0, ListOfDishers);
+            graphics.Draw("WC", 100, 15, empty);
 
             Console.SetCursorPosition(0, 25);
             for (int i = NewsFeed.Count - 1; i >= 0; i--)
@@ -191,13 +198,13 @@ namespace The_Restaurant
             tableDictionary.Add(1, new Table { Name = "Bord 1", TableQuality = 5, TableSize = 4, SetX = 0, SetY = 10, CompanyList = new List<Guest>() });
             tableDictionary.Add(2, new Table { Name = "Bord 2", TableQuality = 5, TableSize = 4, SetX = 20, SetY = 10, CompanyList = new List<Guest>() });
             tableDictionary.Add(3, new Table { Name = "Bord 3", TableQuality = 5, TableSize = 4, SetX = 40, SetY = 10, CompanyList = new List<Guest>() });
-            tableDictionary.Add(4, new Table { Name = "Bord 4", TableQuality = 5, TableSize = 4, SetX = 60, SetY = 10, CompanyList = new List<Guest>() });
-            tableDictionary.Add(5, new Table { Name = "Bord 5", TableQuality = 5, TableSize = 4, SetX = 80, SetY = 10, CompanyList = new List<Guest>() });
+            tableDictionary.Add(4, new Table { Name = "Bord 4", TableQuality = 4, TableSize = 4, SetX = 60, SetY = 10, CompanyList = new List<Guest>() });
+            tableDictionary.Add(5, new Table { Name = "Bord 5", TableQuality = 3, TableSize = 4, SetX = 80, SetY = 10, CompanyList = new List<Guest>() });
             tableDictionary.Add(6, new Table { Name = "Bord 6", TableQuality = 5, TableSize = 2, SetX = 0, SetY = 20, CompanyList = new List<Guest>() });
             tableDictionary.Add(7, new Table { Name = "Bord 7", TableQuality = 5, TableSize = 2, SetX = 20, SetY = 20, CompanyList = new List<Guest>() });
             tableDictionary.Add(8, new Table { Name = "Bord 8", TableQuality = 5, TableSize = 2, SetX = 40, SetY = 20, CompanyList = new List<Guest>() });
-            tableDictionary.Add(9, new Table { Name = "Bord 9", TableQuality = 5, TableSize = 2, SetX = 60, SetY = 20, CompanyList = new List<Guest>() });
-            tableDictionary.Add(10, new Table { Name = "Bord 10", TableQuality = 5, TableSize = 2, SetX = 80, SetY = 20, CompanyList = new List<Guest>() });
+            tableDictionary.Add(9, new Table { Name = "Bord 9", TableQuality = 4, TableSize = 2, SetX = 60, SetY = 20, CompanyList = new List<Guest>() });
+            tableDictionary.Add(10, new Table { Name = "Bord 10", TableQuality = 3, TableSize = 2, SetX = 80, SetY = 20, CompanyList = new List<Guest>() });
         }
         private bool CheckAvailableTable(bool availableTables)
         {
