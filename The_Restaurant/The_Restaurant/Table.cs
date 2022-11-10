@@ -22,21 +22,17 @@ namespace The_Restaurant
 
         public List<Guest> CompanyList { get; set; }
 
-        public List<Menu> menus { get; set; } = new List<Menu>();
-
-        public Table(string name, bool isOccupied, bool isDirty,bool hasOrderd, int tableSize, int tableQuality, int setY, int setX, List<Guest> CompanyList)
+        public Table(string name, bool isOccupied, bool isDirty,bool hasOrdered, int tableSize, int tableQuality, int setY, int setX, List<Guest> CompanyList)
         {
             Name = name;
             IsOccupied = isOccupied;
             IsDirty = isDirty;
-            HasOrderd = hasOrderd;
+            HasOrderd = hasOrdered;
             TableSize = tableSize;
             TableQuality = tableQuality;
             SetY = setY;
             SetX = setX;
             CompanyList = new List<Guest>();
-
-
         }
         public Table()
         {

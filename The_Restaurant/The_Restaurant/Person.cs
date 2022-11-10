@@ -26,9 +26,7 @@ namespace The_Restaurant
     }
     class Waitress : IPerson
     {
-        Chef Chef { get; set; }
-        Restaurant restaurant = new Restaurant();
-        public int NumberOfWaitresses { get; set; } = 3;
+        public int NumberOfWaitresses { get; set; } = 1;
 
         public int SetX { get; set; }
         public int SetY { get; set; }
@@ -46,11 +44,11 @@ namespace The_Restaurant
             Random rnd = new Random();
             Skill = rnd.Next(1, 6);
         }
-      
-        public void TakeCompanyOrderToChef()
+        public Waitress()
         {
-            
+
         }
+      
         public void MoveToKitchen(List<Waitress> waitresses)
         {
             foreach (Waitress waitress in waitresses)
@@ -66,13 +64,15 @@ namespace The_Restaurant
     }
     class Chef : IPerson
     {
-        // Restaurant restaurant = new Restaurant();
         Waitress Waitress { get; set; }
         public string Name { get; set; }
         public int Skill { get; set; }
 
+        public int NumberOfChefs { get; set; } = 1;
+
         public int CookingTime { get; set; }
-        public Queue<KeyValuePair<int, List<Menu>>> chefOrders = new Queue<KeyValuePair<int, List<Menu>>>();
+
+        public Queue<Menu> chefOrders = new Queue<Menu>();
 
         public Chef()
         {
@@ -89,9 +89,6 @@ namespace The_Restaurant
             {                
                 CookingTime = 10;
             }
-
         }
-
-
     }
 }

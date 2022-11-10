@@ -18,8 +18,6 @@ namespace The_Restaurant
         }
         public Menu CourseFromMenu()
         {
-            //SendMethodClass myMenu = new SendMethodClass();
-
             List<Menu> Course = new List<Menu>();
             Course.Add(new Flounder(125, "Flundra"));
             Course.Add(new Salmon(300, "Lax"));
@@ -34,7 +32,6 @@ namespace The_Restaurant
             Random rnd = new Random();
             int index = rnd.Next(0, Course.Count - 1);
 
-            //myMenu.listCalc(MenuList);
             return Course[index];
         }
     }

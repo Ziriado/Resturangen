@@ -26,19 +26,8 @@ namespace The_Restaurant
                 {
                     graphics[i] = (anyList[i] as Chef).Name;
                 }
-
             }              
-            GUI.Window.Draw(header, fromLeft, fromTop, graphics);
-            
+            GUI.Window.Draw(header, fromLeft, fromTop, graphics);         
         }
-        //public void DrawWaitress<T>(string header, int fromLeft, int fromTop, List<T> anyList)
-        //{
-        //    string[] graphics = new string[anyList.Count];
-        //    for (int i = 0; i < anyList.Count; i++)
-        //    {
-        //        graphics[i] = (anyList[i] as Waitress).Name;
-        //    }
-        //    GUI.Window.Draw(header, fromLeft, fromTop, graphics);
-        //}
     }
 }

@@ -11,9 +11,6 @@ namespace The_Restaurant
     {
         public int NumberOfCompanies { get; set; } = 32;
 
-        Guest guest = new Guest();
-
-
         public List<Guest> RandomizeCompany()
         {
             Random rnd = new Random();

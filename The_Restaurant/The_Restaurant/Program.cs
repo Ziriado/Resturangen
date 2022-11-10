@@ -12,10 +12,7 @@
             {
                 Console.ReadKey();
                 restaurant.PerformRound();
-                restaurant.DrawRestaurant();
-
-                
-                
+                restaurant.DrawRestaurant();               
             }
         }
     }
