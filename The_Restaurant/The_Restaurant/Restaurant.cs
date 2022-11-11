@@ -145,6 +145,7 @@ namespace The_Restaurant
                     {
                         
                         ListOfDishers.Add(tableDictionary[tableNumber].CompanyList[i]);
+                     
                         
                     }
 
@@ -168,6 +169,7 @@ namespace The_Restaurant
         public void DrawRestaurant()
         {
             List<Guest> empty = new List<Guest>();
+            
             //empty.Add(new Guest());
 
             Console.Clear();

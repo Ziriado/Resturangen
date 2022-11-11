@@ -30,7 +30,7 @@ namespace The_Restaurant
             Course.Add(new Vego_HappyMeal(85, "Vego Happy Meal"));
 
             Random rnd = new Random();
-            int index = rnd.Next(0, Course.Count - 1);
+            int index = rnd.Next(0, Course.Count);
 
             return Course[index];
         }
