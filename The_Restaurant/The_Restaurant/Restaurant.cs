@@ -140,11 +140,19 @@ namespace The_Restaurant
                 orderDictionary.Add(tableNumber, foods);
                 for (int i = 0; i < foods.Count; i++)
                 {
+                    //Placerar den som inte har råd i diskbåset
+                    if (tableDictionary[tableNumber].CompanyList[i].Cash < foods[i].Price)
+                    {
+                        
+                        ListOfDishers.Add(tableDictionary[tableNumber].CompanyList[i]);
+                        
+                    }
+
                     string result = tableDictionary[tableNumber].CompanyList[i].Cash >= foods[i].Price ? "har råd." : "har inte råd och får diska.";
                     NewsFeed.Add("Vid bord " + tableNumber + " sitter " + tableDictionary[tableNumber].CompanyList[i].Name + " och beställer " + foods[i].Name + " som kostar " + foods[i].Price + " kr. "
                     + tableDictionary[tableNumber].CompanyList[i].Name + " har " + tableDictionary[tableNumber].CompanyList[i].Cash + " kr och " + result);                     
                 }
-            }            
+            }        
         }
         public void SendFoodToTable(Queue<List<Menu>> Orders)
         {
